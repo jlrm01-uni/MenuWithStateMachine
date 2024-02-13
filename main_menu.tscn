@@ -1,16 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgkr17o6khal"]
+[gd_scene load_steps=14 format=3 uid="uid://dgkr17o6khal"]
 
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_v7glk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_fldht"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_60jko"]
 [ext_resource type="Texture2D" uid="uid://dbf15v3jacc64" path="res://artur-voznenko-CoE80lvP410-unsplash.jpg" id="4_1hiu0"]
+[ext_resource type="Texture2D" uid="uid://b7ppbc80s53gi" path="res://torsten-dederichs-dEzd6GpIEys-unsplash.jpg" id="5_rgw4g"]
 
 [sub_resource type="SystemFont" id="SystemFont_ggxdu"]
 font_names = PackedStringArray("Century")
 
-[sub_resource type="Animation" id="Animation_c27qi"]
-resource_name = "menu_appear"
-length = 4.0
+[sub_resource type="Animation" id="Animation_ytal6"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,10 +18,10 @@ tracks/0/path = NodePath("PanelContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,9 +47,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_ytal6"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_c27qi"]
+resource_name = "menu_appear"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,10 +70,10 @@ tracks/0/path = NodePath("PanelContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -103,12 +116,36 @@ tracks/0/keys = {
 "values": [Vector2(3, 3), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_h7s2r"]
+resource_name = "idle"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-4859, -3350)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6whpq"]
 _data = {
 "RESET": SubResource("Animation_ytal6"),
+"idle": SubResource("Animation_h7s2r"),
 "menu_appear": SubResource("Animation_c27qi"),
 "menu_image_shrink": SubResource("Animation_af86g")
 }
+
+[sub_resource type="SystemFont" id="SystemFont_jipio"]
+font_names = PackedStringArray("Agency FB")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lsuyy"]
+font = SubResource("SystemFont_jipio")
+font_size = 136
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -175,3 +212,21 @@ text = "Quit"
 libraries = {
 "": SubResource("AnimationLibrary_6whpq")
 }
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 6048.0
+offset_bottom = 4032.0
+texture = ExtResource("5_rgw4g")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press any key to continue"
+label_settings = SubResource("LabelSettings_lsuyy")

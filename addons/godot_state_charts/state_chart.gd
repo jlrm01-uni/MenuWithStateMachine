@@ -165,3 +165,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		if not child is State:
 			warnings.append("StateChart's child must be a State")
 	return warnings
+
+
+func _on_menu_appearing_state_entered():
+	pass # Replace with function body.
